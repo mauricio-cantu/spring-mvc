@@ -1,0 +1,11 @@
+body{
+	padding: 10px;
+}
+
+a: hover{
+	text-decoration: none;
+}
+
+h2{
+	display: inline-block;
+}

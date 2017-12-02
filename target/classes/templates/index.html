@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Spring MVC</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+
+<div class="container">
+	<div>
+		<h2>Filmes</h2>
+		<a href="adicionar" class="btn btn-primary float-right">Adicionar filme</a>
+	</div>
+	
+	<div th:if="${#lists.isEmpty(filmes)}">
+		<div class="alert alert-warning">Sem filmes para exibir!</div>
+	</div>
+	
+	<div th:unless="${#lists.isEmpty(filmes)}">
+        <table class="table table-striped">
+            <tr>
+                <th>#</th>
+                <th>Título</th>
+                <th>Diretor</th>
+                <th>Gênero</th>
+                <th>Ano de lançamento</th>
+                <th>Opções</th>
+            </tr>
+            <tr th:each="filme : ${filmes}">
+                <td th:text="${filme.id}"></td>
+                <td th:text="${filme.titulo}"></td>
+                <td th:text="${filme.diretor}"></td>
+                <td th:text="${filme.genero}"></td>
+                <td th:text="${filme.anoLancamento}"></td>
+               	<td>
+               		<a th:href="${'/detalhes/' + filme.id}" class="btn btn-success">Detalhes</a>
+	               	<a th:href="${'/editar/' + filme.id}" class="btn btn-info">Editar</a>
+	               	<a th:href="${'/deletar/' + filme.id}" class="btn btn-danger">Excluir</a>
+	            </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
